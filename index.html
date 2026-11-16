@@ -7,67 +7,89 @@
     <meta name="description" content="Portofolio pribadi M Farhan Alhabsyi, mahasiswa Informatika.">
     <title>M Farhan Alhabsyi | Portfolio</title>
 
+    <link rel="stylesheet" href="assets/tailwind.css">
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
     <!-- NAVBAR -->
-    <header>
-        <nav class="navbar">
-            <a href="#home" class="logo">farhan<span>.</span></a>
 
-            <button class="menu-toggle" id="menuToggle">☰</button>
+<!-- NAVBAR -->
+<header class="sticky top-0 z-50 border-b border-white/10 bg-[#0b0b16]/90 backdrop-blur-lg">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+        <a href="#home" class="text-2xl font-bold tracking-wide text-white">
+            farhan<span class="text-purple-400">.</span>
+        </a>
 
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+        <button
+            class="hidden rounded-lg border border-white/20 px-3 py-2 text-xl text-white transition hover:bg-purple-500/20 max-[600px]:block"
+            id="menuToggle"
+            aria-label="Buka menu navigasi"
+            aria-expanded="false"
+        >
+            ☰
+        </button>
 
-    <!-- HERO SECTION -->
-    <section id="home" class="hero">
-        <div class="hero-content">
+        <ul
+            class="nav-links flex items-center gap-8 text-sm font-medium text-gray-300 max-[600px]:absolute max-[600px]:left-0 max-[600px]:top-16.25 max-[600px]:hidden max-[600px]:w-full max-[600px]:flex-col max-[600px]:gap-5.5 max-[600px]:bg-[#10101d] max-[600px]:p-6.25"
+            id="navLinks"
+        >
+            <li><a href="#home" class="transition hover:text-purple-400">Home</a></li>
+            <li><a href="#about" class="transition hover:text-purple-400">About</a></li>
+            <li><a href="#skills" class="transition hover:text-purple-400">Skills</a></li>
+            <li><a href="#projects" class="transition hover:text-purple-400">Projects</a></li>
+            <li><a href="#contact" class="transition hover:text-purple-400">Contact</a></li>
+        </ul>
+    </nav>
+</header>
 
-            <p class="greeting">HELLO, WELCOME TO MY PORTFOLIO</p>
 
-            <h1>
-                Hi, I'm <span>M Farhan<br>Alhabsyi.</span>
-            </h1>
 
-            <h2>Informatics Student & Web Developer</h2>
+<!-- HERO SECTION -->
+<section
+    id="home"
+    class="mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-center gap-12 px-6 pb-20 pt-32 lg:grid-cols-[1.3fr_0.7fr] lg:gap-16 lg:px-10"
+>
+    <div class="hero-content">
+        <p class="greeting">HELLO, WELCOME TO MY PORTFOLIO</p>
 
-            <p class="hero-description">
-                Saya mahasiswa Informatika yang memiliki ketertarikan
-                pada pengembangan website, teknologi, dan desain
-                antarmuka. Saya senang mempelajari hal baru dan
-                membangun solusi digital yang bermanfaat.
-            </p>
+        <h1 class="mt-5 text-5xl font-bold leading-tight md:text-7xl">
+            Hi, I'm <span>M Farhan<br>Alhabsyi.</span>
+        </h1>
 
-            <div class="hero-buttons">
-                <a href="#projects" class="btn-primary">Explore My Work ↗</a>
-                <a href="#contact" class="btn-secondary">Contact Me</a>
-            </div>
+        <h2 class="mt-6 text-lg font-medium text-slate-300 md:text-xl">
+            Informatics Student & Web Developer
+        </h2>
 
+        <p class="hero-description mt-5 max-w-xl text-sm leading-relaxed text-slate-400 md:text-base">
+            Saya mahasiswa Informatika yang memiliki ketertarikan
+            pada pengembangan website, teknologi, dan desain
+            antarmuka. Saya senang mempelajari hal baru dan
+            membangun solusi digital yang bermanfaat.
+        </p>
+
+        <div class="hero-buttons mt-9 flex flex-wrap gap-4">
+            <a href="#projects" class="btn-primary">Explore My Work ↗</a>
+            <a href="#contact" class="btn-secondary">Contact Me</a>
+        </div>
+    </div>
+
+    <div class="hero-profile mx-auto w-full max-w-sm">
+        <div class="profile-circle">
+            <img src="assets/profile.jpg" alt="Foto profil M Farhan Alhabsyi">
         </div>
 
-        <div class="hero-profile">
-            <div class="profile-circle">
-    <img src="assets/profile.jpg" alt="Foto profil M Farhan Alhabsyi">
-</div>
-            <p class="profile-name">M Farhan Alhabsyi</p>
-            <p class="profile-role">Informatics Student</p>
-            <div class="profile-line"></div>
-            <p class="profile-info">NPM: 22312084</p>
-            <p class="profile-info">Universitas Teknokrat Indonesia</p>
-        </div>
-    </section>
+        <p class="profile-name">M Farhan Alhabsyi</p>
+        <p class="profile-role">Informatics Student</p>
+        <div class="profile-line"></div>
+        <p class="profile-info">NPM: 22312084</p>
+        <p class="profile-info">Universitas Teknokrat Indonesia</p>
+    </div>
+</section>
+
 
     <!-- ABOUT SECTION -->
-    <section id="about" class="section">
+    <section id="about" class="mx-auto max-w-7xl px-6 py-24 lg:px-10">
         <p class="section-label">01 / ABOUT ME</p>
 
         <h2 class="section-title">
@@ -93,7 +115,7 @@
     </section>
 
     <!-- SKILLS SECTION -->
-    <section id="skills" class="section">
+    <section id="skills" class="mx-auto max-w-7xl px-6 py-24 lg:px-10">
         <p class="section-label">02 / MY SKILLS</p>
 
         <h2 class="section-title">
@@ -122,7 +144,7 @@
     </section>
 
     <!-- PROJECTS SECTION -->
-    <section id="projects" class="section">
+    <section id="projects" class="mx-auto max-w-7xl px-6 py-24 lg:px-10">
         <p class="section-label">03 / MY PROJECTS</p>
 
         <h2 class="section-title">
@@ -183,7 +205,7 @@
     </section>
 
     <!-- CONTACT SECTION -->
-    <section id="contact" class="section contact-section">
+    <section id="contact" class="mx-auto max-w-7xl px-6 py-24 text-center lg:px-10 contact-section">
         <p class="section-label">04 / CONTACT ME</p>
 
         <h2 class="section-title">
@@ -201,7 +223,7 @@
     </section>
 
     <!-- FOOTER -->
-    <footer>
+    <footer class="border-t border-white/10 px-6 py-8 text-center text-xs leading-loose text-zinc-500">
         <p>© 2026 M Farhan Alhabsyi. All Rights Reserved.</p>
         <p>Designed & Developed by Farhan.</p>
     </footer>
