@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx @tailwindcss/cli -i ./src/input.css -o ./assets/tailwind.css"
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -19,7 +21,10 @@
   "homepage": "https://github.com/farhanalhabsyi/portofolio-farhan#readme",
   "description": "",
   "dependencies": {
-    "@tailwindcss/cli": "^4.3.5",
     "tailwindcss": "^4.3.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.5",
+    "vite": "^8.3.8"
   }
 }

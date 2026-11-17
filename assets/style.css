@@ -338,12 +338,14 @@ header {
 
 .projects-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 25px;
     margin-top: 45px;
 }
 
 .project-card {
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     border: 1px solid #ffffff15;
     border-radius: 18px;
@@ -367,6 +369,38 @@ header {
     font-weight: 700;
 }
 
+
+.project-image.figma-embed {
+    display: block;
+    height: 230px;
+    overflow: hidden;
+    background: #151d39;
+}
+
+.project-image.figma-embed iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+
+.project-image.website-embed {
+    display: block;
+    height: 230px;
+    overflow: hidden;
+    background: #151d39;
+}
+
+.project-image.website-embed iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+
+
 .edubridge {
     background: radial-gradient(circle at 70%, #334b83, #151d39 70%);
     color: #c4b5fd;
@@ -377,7 +411,15 @@ header {
     color: #67e8f9;
 }
 
+.civora {
+    background: radial-gradient(circle at 70%, #3730a3, #111221 70%);
+    color: #a5b4fc;
+}
+
 .project-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
     padding: 25px;
 }
 
@@ -405,7 +447,8 @@ header {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: auto;
+    padding-top: 20px;
 }
 
 .project-tags span {
@@ -415,7 +458,6 @@ header {
     border-radius: 7px;
     font-size: 11px;
 }
-
 /* =================================
    9. CONTACT SECTION
 ================================= */
@@ -462,12 +504,15 @@ footer {
     }
 
     .projects-container {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
 }
-
 @media (max-width: 600px) {
+
+    .projects-container {
+        grid-template-columns: 1fr;
+    }
 
     .navbar {
         padding: 18px 22px;
@@ -531,4 +576,45 @@ footer {
         font-size: 12px;
     }
 
+}
+
+
+.project-link {
+    display: inline-block;
+    width: fit-content;
+    margin-top: 20px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #7c3aed, #3b82f6);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.project-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 18px rgba(124, 58, 237, 0.35);
+}
+
+.project-image.civora img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* WR TATI IMAGE - SHOW FULL SCREENSHOT */
+.project-image.smartstock {
+    overflow: hidden;
+}
+
+.project-image.smartstock img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
 }
