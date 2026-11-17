@@ -3,7 +3,7 @@ name: Deploy Portfolio to GitHub Pages
 on:
   push:
     branches:
-      - Lat-3_LandingPage
+      - main
   workflow_dispatch:
 
 permissions:
