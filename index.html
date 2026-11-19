@@ -36,7 +36,8 @@
             <li><a href="#about" class="transition hover:text-purple-400">About</a></li>
             <li><a href="#skills" class="transition hover:text-purple-400">Skills</a></li>
             <li><a href="#projects" class="transition hover:text-purple-400">Projects</a></li>
-            <li><a href="#contact" class="transition hover:text-purple-400">Contact</a></li>
+<li><a href="#certificates" class="transition hover:text-purple-400">Certificates</a></li>
+<li><a href="#contact" class="transition hover:text-purple-400">Contact</a></li>
         </ul>
     </nav>
 </header>
@@ -51,7 +52,7 @@
     <div class="hero-content">
         <p class="greeting">HELLO, WELCOME TO MY PORTFOLIO</p>
 
-        <h1 class="mt-5 text-5xl font-bold leading-tight md:text-7xl">
+        <h1 class="hero-title mt-5 font-bold leading-tight">
             Hi, I'm <span>M Farhan<br>Alhabsyi.</span>
         </h1>
 
@@ -112,9 +113,47 @@
         </div>
     </section>
 
+
+    <!-- EXPERIENCE & EDUCATION SECTION -->
+    <section id="experience" class="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+        <p class="section-label">02 / MY JOURNEY</p>
+
+        <h2 class="section-title">
+            Experience & <span>Education.</span>
+        </h2>
+
+        <p class="section-description">
+            Perjalanan pendidikan dan pengalaman saya dalam
+            mempelajari serta mengembangkan proyek teknologi.
+        </p>
+
+        <div class="experience-container">
+            <div class="experience-card">
+                <span class="experience-year">Pendidikan</span>
+                <h3>Universitas Teknokrat Indonesia</h3>
+                <p class="experience-role">S1 Informatika</p>
+                <p>
+                    Mempelajari ilmu komputer, pemrograman,
+                    pengembangan web, basis data, dan teknologi
+                    informasi.
+                </p>
+            </div>
+
+            <div class="experience-card">
+                <span class="experience-year">Pengalaman Proyek</span>
+                <h3>Pengembangan Website Portofolio</h3>
+                <p class="experience-role">Personal Project · 2026</p>
+                <p>
+                    Merancang dan mengembangkan website portofolio
+                    responsif menggunakan HTML, Tailwind CSS,
+                    JavaScript, dan Vite.
+                </p>
+            </div>
+        </div>
+    </section>
     <!-- SKILLS SECTION -->
     <section id="skills" class="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-        <p class="section-label">02 / MY SKILLS</p>
+        <p class="section-label">03 / MY SKILLS</p>
 
         <h2 class="section-title">
             Skills & <span>Technologies.</span>
@@ -125,25 +164,44 @@
             dan gunakan dalam pengembangan proyek.
         </p>
 
-        <div class="skills-container">
-            <div class="skill-card">HTML</div>
-            <div class="skill-card">CSS</div>
-            <div class="skill-card">JavaScript</div>
-            <div class="skill-card">Tailwind CSS</div>
-            <div class="skill-card">React JS</div>
-            <div class="skill-card">Node.js</div>
-            <div class="skill-card">Express.js</div>
-            <div class="skill-card">MySQL</div>
-            <div class="skill-card">Prisma ORM</div>
-            <div class="skill-card">Git & GitHub</div>
-            <div class="skill-card">Figma</div>
-            <div class="skill-card">Flutter</div>
+        <!-- FRONTEND -->
+        <div class="skill-group">
+            <h3 class="skill-category-title">Frontend Development</h3>
+            <div class="skills-container">
+                <div class="skill-card">HTML</div>
+                <div class="skill-card">CSS</div>
+                <div class="skill-card">JavaScript</div>
+                <div class="skill-card">Tailwind CSS</div>
+                <div class="skill-card">React JS</div>
+            </div>
+        </div>
+
+        <!-- BACKEND -->
+        <div class="skill-group">
+            <h3 class="skill-category-title">Backend & Database</h3>
+            <div class="skills-container">
+                <div class="skill-card">Node.js</div>
+                <div class="skill-card">Express.js</div>
+                <div class="skill-card">MySQL</div>
+                <div class="skill-card">Prisma ORM</div>
+            </div>
+        </div>
+
+        <!-- TOOLS & MOBILE -->
+        <div class="skill-group">
+            <h3 class="skill-category-title">Tools & Mobile Development</h3>
+            <div class="skills-container">
+                <div class="skill-card">Git & GitHub</div>
+                <div class="skill-card">Figma</div>
+                <div class="skill-card">Flutter</div>
+            </div>
         </div>
     </section>
 
+
     <!-- PROJECTS SECTION -->
     <section id="projects" class="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-        <p class="section-label">03 / MY PROJECTS</p>
+        <p class="section-label">04 / MY PROJECTS</p>
 
         <h2 class="section-title">
             Featured <span>Projects.</span>
@@ -253,11 +311,59 @@
             </div>
 
         </div>
+        </section>
+
+    <!-- CERTIFICATES SECTION -->
+    <section id="certificates" class="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+        <p class="section-label">05 / CERTIFICATES</p>
+
+        <h2 class="section-title">
+            Certificates & <span>Achievements.</span>
+        </h2>
+
+        <p class="section-description">
+            Sertifikat pelatihan dan pembelajaran yang telah saya selesaikan.
+        </p>
+
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 mt-10">
+            <div class="rounded-2xl border border-purple-500/20 bg-white/5 p-7 transition duration-300 hover:border-purple-400/60 hover:-translate-y-1">
+                <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-purple-500/15 text-2xl">
+                    🔧
+                </div>
+                <p class="mb-2 text-sm font-medium tracking-wider text-purple-400">
+                    TECHNICAL SKILLS
+                </p>
+                <h3 class="mb-3 text-xl font-bold text-white">
+                    Troubleshooting
+                </h3>
+                <p class="text-sm leading-relaxed text-gray-400">
+                    Sertifikat pembelajaran mengenai troubleshooting
+                    dan pemecahan masalah teknis.
+                </p>
+            </div>
+
+            <div class="rounded-2xl border border-blue-500/20 bg-white/5 p-7 transition duration-300 hover:border-blue-400/60 hover:-translate-y-1">
+                <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/15 text-2xl">
+                    🐍
+                </div>
+                <p class="mb-2 text-sm font-medium tracking-wider text-blue-400">
+                    PROGRAMMING
+                </p>
+                <h3 class="mb-3 text-xl font-bold text-white">
+                    Python
+                </h3>
+                <p class="text-sm leading-relaxed text-gray-400">
+                    Sertifikat pembelajaran pemrograman Python
+                    dan dasar pengembangan program.
+                </p>
+            </div>
+        </div>
     </section>
 
     <!-- CONTACT SECTION -->
+
     <section id="contact" class="mx-auto max-w-7xl px-6 py-24 text-center lg:px-10 contact-section">
-        <p class="section-label">04 / CONTACT ME</p>
+        <p class="section-label">06 / CONTACT ME</p>
 
         <h2 class="section-title">
             Let's Work <span>Together.</span>

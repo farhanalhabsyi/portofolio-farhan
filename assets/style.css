@@ -108,9 +108,9 @@ header {
     margin-bottom: 25px;
 }
 
-.hero h1 {
+.hero-title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(48px, 6vw, 76px);
+    font-size: clamp(38px, 4vw, 54px);
     line-height: 1.1;
     font-weight: 700;
 }
@@ -315,6 +315,20 @@ header {
     margin-top: 35px;
 }
 
+
+/* SKILL CATEGORIES */
+.skill-group {
+    margin-top: 30px;
+}
+
+.skill-category-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #c4b5fd;
+    margin-bottom: 15px;
+}
+
+
 .skill-card {
     padding: 15px 23px;
     border: 1px solid #ffffff20;
@@ -331,6 +345,62 @@ header {
     transform: translateY(-5px);
     background: #211b3d;
 }
+
+
+/* =================================
+   EXPERIENCE & EDUCATION SECTION
+================================= */
+
+.experience-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 35px;
+}
+
+.experience-card {
+    padding: 28px;
+    background: #151629;
+    border: 1px solid #ffffff20;
+    border-radius: 16px;
+    transition: 0.3s;
+}
+
+.experience-card:hover {
+    border-color: #8b5cf6;
+    transform: translateY(-5px);
+}
+
+.experience-year {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #a78bfa;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.experience-card h3 {
+    margin-bottom: 10px;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.experience-role {
+    margin-bottom: 12px;
+    color: #a78bfa;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.experience-card p:last-child {
+    color: #a1a1b5;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
 
 /* =================================
    8. PROJECT SECTION
@@ -514,6 +584,17 @@ footer {
         grid-template-columns: 1fr;
     }
 
+
+    .experience-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .experience-card {
+        padding: 22px;
+    }
+
+
     .navbar {
         padding: 18px 22px;
     }
@@ -541,10 +622,6 @@ footer {
 
     .hero {
         padding: 130px 22px 70px;
-    }
-
-    .hero h1 {
-        font-size: 48px;
     }
 
     .hero h2 {
