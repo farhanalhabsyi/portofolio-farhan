@@ -67,7 +67,8 @@
             membangun solusi digital yang bermanfaat.
         </p>
 
-        <div class="hero-buttons mt-9 flex flex-wrap gap-4">
+
+<div class="hero-buttons mt-9 flex flex-wrap gap-4">
     <a href="#projects" class="btn-primary">Explore My Work ↗</a>
     <a href="#contact" class="btn-secondary">Contact Me</a>
     <a
@@ -78,6 +79,43 @@
         Download CV ↓
     </a>
 </div>
+
+<!-- HERO SOCIAL LINKS -->
+<div class="mt-8 flex items-center gap-5">
+    <a
+        href="https://github.com/farhanalhabsyi"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub M Farhan Alhabsyi"
+        title="GitHub"
+        class="text-slate-400 transition hover:text-purple-400"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="25" height="25" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor"
+             stroke-width="1.8" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+        </svg>
+    </a>
+
+    <a
+        href="mailto:cloudalhabsyi@gmail.com"
+        aria-label="Email M Farhan Alhabsyi"
+        title="Email"
+        class="text-slate-400 transition hover:text-purple-400"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="25" height="25" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor"
+             stroke-width="1.8" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <path d="m3 7 9 6 9-6"/>
+        </svg>
+    </a>
+</div>
+
     </div>
 
     <div class="hero-profile mx-auto w-full max-w-sm">
@@ -279,17 +317,25 @@
                         <span>Prisma</span>
                     </div>
 
-                    <a
-                        href="https://umkm-smartstock.vercel.app/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="project-link">
-                        Lihat Website ↗
-                    </a>
+                    <div class="project-links flex flex-wrap gap-4">
+    <a
+        href="https://umkm-smartstock.vercel.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="project-link">
+        Lihat Website ↗
+    </a>
+
+    <a
+        href="https://github.com/farhanalhabsyi/umkm-smartstock"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="project-link">
+        GitHub ↗
+    </a>
+</div>
                 </div>
             </div>
-
-<!-- CIVORA PROJECT -->
             <div class="project-card">
                 <div class="project-image civora">
                     <img
@@ -368,29 +414,128 @@
     </section>
 
     <!-- CONTACT SECTION -->
+<section id="contact" class="mx-auto max-w-7xl px-6 py-24 lg:px-10 contact-section">
+    <div class="mx-auto max-w-2xl">
+        <p class="section-label text-center">06 / CONTACT ME</p>
 
-    <section id="contact" class="mx-auto max-w-7xl px-6 py-24 text-center lg:px-10 contact-section">
-        <p class="section-label">06 / CONTACT ME</p>
-
-        <h2 class="section-title">
+        <h2 class="section-title text-center">
             Let's Work <span>Together.</span>
         </h2>
 
-        <p class="section-description">
+        <p class="section-description mx-auto text-center">
             Punya ide atau ingin berdiskusi mengenai teknologi
-            dan pengembangan proyek? Jangan ragu untuk menghubungi saya.
+            dan pengembangan proyek? Silakan kirim pesan melalui
+            formulir berikut.
         </p>
 
-        <a href="mailto:emailkamu@example.com" class="btn-primary">
-            Send Me an Email ↗
-        </a>
-    </section>
+        <form id="contactForm" class="mt-10 space-y-5">
+            <div>
+                <label for="contactName" class="mb-2 block text-sm text-slate-300">
+                    Nama Lengkap
+                </label>
+                <input
+                    type="text"
+                    id="contactName"
+                    name="name"
+                    placeholder="Masukkan nama kamu"
+                    required
+                    class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none transition focus:border-purple-500"
+                >
+            </div>
 
-    <!-- FOOTER -->
-    <footer class="border-t border-white/10 px-6 py-8 text-center text-xs leading-loose text-zinc-500">
-        <p>© 2026 M Farhan Alhabsyi. All Rights Reserved.</p>
-        <p>Designed & Developed by Farhan.</p>
-    </footer>
+            <div>
+                <label for="contactEmail" class="mb-2 block text-sm text-slate-300">
+                    Email
+                </label>
+                <input
+                    type="email"
+                    id="contactEmail"
+                    name="email"
+                    placeholder="nama@email.com"
+                    required
+                    class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none transition focus:border-purple-500"
+                >
+            </div>
+
+            <div>
+                <label for="contactSubject" class="mb-2 block text-sm text-slate-300">
+                    Subjek
+                </label>
+                <input
+                    type="text"
+                    id="contactSubject"
+                    name="subject"
+                    placeholder="Subjek pesan"
+                    required
+                    class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none transition focus:border-purple-500"
+                >
+            </div>
+
+            <div>
+                <label for="contactMessage" class="mb-2 block text-sm text-slate-300">
+                    Pesan
+                </label>
+                <textarea
+                    id="contactMessage"
+                    name="message"
+                    rows="5"
+                    placeholder="Tuliskan pesan kamu..."
+                    required
+                    class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none transition focus:border-purple-500"
+                ></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary w-full">
+                Send Message ↗
+            </button>
+        </form>
+    </div>
+</section>
+<!-- FOOTER -->
+<footer class="border-t border-white/10 px-6 py-10 text-center">
+    <div class="mx-auto max-w-7xl">
+        <p class="text-lg font-bold text-white">
+            M Farhan <span class="text-purple-400">Alhabsyi.</span>
+        </p>
+
+        <p class="mt-2 text-sm text-slate-400">
+            Informatics Student & Web Developer
+        </p>
+
+        <!-- FOOTER NAVIGATION -->
+        <nav class="mt-6" aria-label="Footer Navigation">
+            <ul class="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-slate-400">
+                <li><a href="#home" class="transition hover:text-purple-400">Home</a></li>
+                <li><a href="#about" class="transition hover:text-purple-400">About</a></li>
+                <li><a href="#skills" class="transition hover:text-purple-400">Skills</a></li>
+                <li><a href="#projects" class="transition hover:text-purple-400">Projects</a></li>
+                <li><a href="#certificates" class="transition hover:text-purple-400">Certificates</a></li>
+                <li><a href="#contact" class="transition hover:text-purple-400">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- SOCIAL LINKS -->
+        <div class="mt-6 flex justify-center gap-5 text-sm">
+            <a href="https://github.com/farhanalhabsyi"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="text-slate-400 transition hover:text-purple-400">
+                GitHub
+            </a>
+
+            <a href="mailto:cloudalhabsyi@gmail.com"
+               class="text-slate-400 transition hover:text-purple-400">
+                Email
+            </a>
+        </div>
+
+        <div class="mt-8 border-t border-white/10 pt-6 text-xs leading-loose text-slate-500">
+            <p>© 2026 M Farhan Alhabsyi. All Rights Reserved.</p>
+            <p>Designed & Developed by Farhan.</p>
+        </div>
+    </div>
+</footer>
+
 
     <script type="module" src="/src/main.js"></script>
 
