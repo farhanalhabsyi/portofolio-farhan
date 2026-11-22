@@ -143,9 +143,15 @@
         </section>
 
         <section class="database">
-            <span class="label">Database Laravel Aktif</span>
-            <div class="value">{{ $databaseName }}</div>
-        </section>
+    <span class="label">Status Koneksi Database</span>
+    <div class="value">{{ $databaseStatus }}</div>
+
+    <span class="label" style="margin-top: 14px;">Database Aktif</span>
+    <div class="value">{{ $databaseName }}</div>
+
+    <span class="label" style="margin-top: 14px;">Versi Laravel</span>
+    <div class="value">{{ $laravelVersion }}</div>
+</section>
 
         <footer class="footer">
             Dibangun menggunakan Laravel dan Blade Template
