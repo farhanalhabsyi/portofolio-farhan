@@ -129,3 +129,102 @@ Screenshot full page menampilkan identitas mahasiswa, status koneksi database, n
 10. Buka aplikasi melalui browser:
 
     `http://127.0.0.1:8000`
+
+---
+
+# Latihan 4b — Database, Model, dan Seeder
+
+## Deskripsi
+
+Latihan ini berfokus pada perancangan database portofolio menggunakan Laravel Migration, Eloquent Model, Relationship, dan Seeder.
+
+Database dirancang untuk menyimpan informasi profil mahasiswa, keterampilan, proyek, pengalaman, sertifikat, serta pesan dari pengunjung.
+
+## Struktur Database
+
+Latihan ini menambahkan 7 tabel portofolio:
+
+| Tabel | Fungsi |
+|---|---|
+| profiles | Menyimpan informasi profil mahasiswa |
+| skills | Menyimpan daftar keterampilan |
+| projects | Menyimpan data proyek portofolio |
+| project_skill | Tabel pivot relasi proyek dan keterampilan |
+| experiences | Menyimpan pengalaman pendidikan, organisasi, magang, dan kerja |
+| certificates | Menyimpan data sertifikat |
+| messages | Menyimpan pesan dari pengunjung |
+
+Tabel `project_skill` menggunakan relasi many-to-many antara `projects` dan `skills`.
+
+Foreign key pada tabel pivot menggunakan cascade delete sehingga data relasi ikut terhapus ketika proyek atau keterampilan dihapus.
+
+## Eloquent Model
+
+Model yang dibuat:
+
+- Profile
+- Skill
+- Project
+- Experience
+- Certificate
+- Message
+
+Model `Project` dan `Skill` memiliki relasi many-to-many menggunakan method `belongsToMany()` dan `withTimestamps()`.
+
+## Seeder
+
+Seeder `PortfolioSeeder` digunakan untuk mengisi data contoh portofolio.
+
+Data yang dimasukkan meliputi:
+
+| Data | Jumlah |
+|---|---:|
+| Profile | 1 |
+| Skills | 6 |
+| Projects | 3 |
+| Project-Skill Relations | 6 |
+| Experiences | 2 |
+| Certificates | 1 |
+
+Seeder menggunakan `updateOrCreate()` dan `sync()` agar dapat dijalankan kembali tanpa membuat data duplikat.
+
+Data pengalaman dan sertifikat contoh perlu disesuaikan dengan informasi sebenarnya.
+
+## Perintah yang Digunakan
+
+| Perintah | Fungsi |
+|---|---|
+| `php artisan make:model NamaModel` | Membuat Eloquent Model |
+| `php artisan make:migration nama_migration` | Membuat file migration |
+| `php artisan migrate` | Menjalankan migration |
+| `php artisan migrate:status` | Memeriksa status migration |
+| `php artisan make:seeder PortfolioSeeder` | Membuat seeder |
+| `php artisan db:seed --class=PortfolioSeeder` | Menjalankan seeder portofolio |
+| `php artisan tinker` | Menguji model dan relasi melalui console interaktif |
+
+## Hasil Pengujian
+
+Pengujian dilakukan menggunakan Laravel Tinker.
+
+Hasil pengujian menunjukkan:
+
+- Seluruh migration berhasil dijalankan.
+- Data seeder berhasil dimasukkan ke database.
+- Relasi many-to-many antara Project dan Skill berhasil digunakan.
+- Relasi inverse dari Skill ke Project berhasil digunakan.
+- Cascade delete pada tabel pivot berhasil diuji.
+- Data sementara untuk pengujian cascade delete telah dihapus.
+
+## Screenshot
+
+### Struktur Database
+
+![Struktur Database](docs/screenshots/database-tables.png)
+
+### Data Seeder Proyek
+
+![Data Proyek](docs/screenshots/portofolio-projects.png)
+
+### Relasi Project dan Skill
+
+![Relasi Project dan Skill](docs/screenshots/project-skill-relations.png)
