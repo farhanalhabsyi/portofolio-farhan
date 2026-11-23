@@ -304,6 +304,7 @@ Automated test dijalankan menggunakan perintah:
 
 ```bash
 php artisan test
+```
 
 ## Menjalankan API
 
@@ -325,3 +326,84 @@ php artisan test
 ## Catatan
 
 File `.env` berisi konfigurasi lokal dan tidak boleh di-commit ke repository. Gunakan `.env.example` sebagai template konfigurasi.
+
+
+# Latihan 5b — RESTful API POST Endpoint
+
+## Deskripsi
+
+Latihan ini mengimplementasikan endpoint RESTful API menggunakan method HTTP POST untuk menerima dan menyimpan pesan dari pengunjung portofolio.
+
+Endpoint menggunakan Laravel Form Request untuk melakukan validasi input, membersihkan data sebelum disimpan, serta mengembalikan respons JSON dengan status HTTP yang sesuai.
+
+## Endpoint API
+
+Base URL lokal: `http://127.0.0.1:8000`
+
+| Method | Endpoint | Keterangan |
+|---|---|---|
+| POST | `/api/portfolio/messages` | Menyimpan pesan dari pengunjung |
+
+Endpoint dapat diakses tanpa autentikasi dan memiliki middleware rate limiting `throttle:5,1`, yaitu maksimal 5 request per menit.
+
+## Validasi Request
+
+Validasi dilakukan melalui `StoreMessageRequest`.
+
+| Field | Aturan |
+|---|---|
+| `sender_name` | Wajib, string, 3–100 karakter |
+| `sender_email` | Wajib, format email RFC dan DNS, maksimal 255 karakter |
+| `subject` | Wajib, string, 3–150 karakter |
+| `body` | Wajib, string, 10–2000 karakter |
+
+Pesan validasi menggunakan bahasa Indonesia.
+
+## Contoh Request
+
+```json
+{
+  "sender_name": "Farhan Test",
+  "sender_email": "farhan.test@gmail.com",
+  "subject": "Pengujian API Portofolio",
+  "body": "Ini adalah pesan pengujian endpoint POST portofolio."
+}
+```
+
+## Format Respons
+
+### Validasi gagal — HTTP 422
+
+Jika data tidak memenuhi aturan validasi, API mengembalikan respons JSON dengan status `error` dan detail kesalahan pada field yang tidak valid.
+
+### Berhasil menyimpan pesan — HTTP 201
+
+Jika data valid, API menyimpan pesan ke tabel `messages` dan mengembalikan status `success` beserta data pesan yang tersimpan.
+
+## Keamanan dan Penyimpanan
+
+Data request diambil melalui `$request->validated()` agar hanya field yang lolos validasi digunakan.
+
+Nama pengirim, subjek, dan isi pesan dibersihkan dari tag HTML menggunakan `strip_tags()`. Email dibersihkan menggunakan `FILTER_SANITIZE_EMAIL`.
+
+Data disimpan menggunakan model Eloquent `Message::create()` dengan field yang diizinkan pada `$fillable`.
+
+## Hasil Pengujian
+
+Pengujian endpoint dilakukan menggunakan Postman.
+
+- Request dengan data tidak valid berhasil mengembalikan HTTP 422.
+- Request dengan data valid berhasil mengembalikan HTTP 201.
+- Data pesan berhasil tersimpan dan diverifikasi melalui Laravel Tinker.
+- Middleware rate limiting berhasil terdaftar pada route.
+- Automated test Laravel: 6 tests passed dan 21 assertions passed.
+
+## Screenshot Pengujian
+
+### Validasi gagal — HTTP 422
+
+![Post message validation 422](docs/screenshots/post-message-validation-422.png)
+
+### Berhasil menyimpan pesan — HTTP 201
+
+![Post message success 201](docs/screenshots/post-message-success-201.png)
