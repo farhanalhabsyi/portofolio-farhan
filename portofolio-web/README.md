@@ -228,3 +228,100 @@ Hasil pengujian menunjukkan:
 ### Relasi Project dan Skill
 
 ![Relasi Project dan Skill](docs/screenshots/project-skill-relations.png)
+
+# Latihan 5a — RESTful API GET Endpoints
+
+## Deskripsi
+
+Latihan ini mengimplementasikan RESTful API untuk menyediakan data portofolio mahasiswa menggunakan Laravel 11 dan MySQL. API bersifat read-only dan mengembalikan data dalam format JSON terstruktur.
+
+## Endpoint API
+
+Base URL lokal: `http://127.0.0.1:8000`
+
+| Method | Endpoint | Keterangan |
+|---|---|---|
+| GET | `/api/portfolio/profile` | Mengambil data profil |
+| GET | `/api/portfolio/skills` | Mengambil daftar skill |
+| GET | `/api/portfolio/projects` | Mengambil daftar proyek beserta skill |
+| GET | `/api/portfolio/projects/{slug}` | Mengambil detail proyek berdasarkan slug |
+| GET | `/api/portfolio/experiences` | Mengambil data pengalaman |
+| GET | `/api/portfolio/certificates` | Mengambil data sertifikat |
+
+Semua endpoint portofolio menggunakan HTTP GET dan tidak memerlukan autentikasi.
+
+## Format Respons
+
+Respons sukses menggunakan struktur JSON dengan field `status`, `message`, dan `data`. Endpoint daftar juga menyediakan field `total` untuk menunjukkan jumlah data yang dikembalikan.
+
+Contoh respons:
+
+```json
+{
+  "status": "success",
+  "message": "Data skill berhasil diambil.",
+  "total": 6,
+  "data": []
+}
+```
+
+Jika slug proyek tidak ditemukan, API mengembalikan HTTP 404 dengan respons JSON:
+
+```json
+{
+  "status": "error",
+  "message": "Proyek tidak ditemukan.",
+  "data": null
+}
+```
+
+## Eager Loading dan N+1 Query
+
+Endpoint proyek menggunakan Eloquent eager loading melalui `with('skills')` untuk mengambil relasi skill secara efisien.
+
+Tanpa eager loading, aplikasi berpotensi mengalami N+1 Query Problem, yaitu query tambahan dijalankan untuk setiap proyek ketika relasi skill diakses. Dengan eager loading, Laravel mengambil data proyek dan relasi skill secara terpisah dalam jumlah query yang lebih efisien.
+
+## Konfigurasi API Laravel 11
+
+Laravel 11 menggunakan struktur aplikasi yang lebih ringkas. Routing API diaktifkan melalui konfigurasi `bootstrap/app.php` dan didefinisikan pada `routes/api.php`.
+
+Perintah `php artisan install:api` digunakan untuk memasang konfigurasi API dan Laravel Sanctum. Route API secara otomatis memiliki prefix `/api`.
+
+## Pengujian
+
+Endpoint diuji menggunakan browser, pemeriksaan route Laravel, dan automated feature test menggunakan PHPUnit dengan database SQLite in-memory.
+
+Hasil pengujian:
+- Endpoint profile berhasil mengembalikan JSON.
+- Endpoint skills berhasil mengembalikan 6 data.
+- Endpoint projects berhasil mengembalikan 3 proyek beserta relasi skills.
+- Detail proyek `edubridge` berhasil diakses berdasarkan slug.
+- Endpoint experiences berhasil mengembalikan 2 data.
+- Endpoint certificates berhasil mengembalikan 1 data.
+- Slug proyek yang tidak ditemukan mengembalikan HTTP 404 JSON.
+
+Automated test dijalankan menggunakan perintah:
+
+```bash
+php artisan test
+
+## Menjalankan API
+
+1. Pastikan konfigurasi database pada `.env` sudah benar.
+2. Jalankan migration:
+
+   ```bash
+   php artisan migrate
+   ```
+
+3. Jalankan server Laravel:
+
+   ```bash
+   php artisan serve
+   ```
+
+4. Akses endpoint melalui browser atau API client seperti Postman atau Thunder Client.
+
+## Catatan
+
+File `.env` berisi konfigurasi lokal dan tidak boleh di-commit ke repository. Gunakan `.env.example` sebagai template konfigurasi.

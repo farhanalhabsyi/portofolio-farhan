@@ -32,15 +32,17 @@ class PortfolioController extends Controller
             'message' => 'Data profil berhasil diambil.',
             'data' => [
                 'id' => $profile->id,
-                'name' => $profile->name,
-                'title' => $profile->title,
+                'full_name' => $profile->full_name,
+                'headline' => $profile->headline,
                 'email' => $profile->email,
                 'phone' => $profile->phone,
                 'bio' => $profile->bio,
-                'avatar_url' => $profile->avatar_url,
+                'photo_url' => $profile->photo_url,
+                'cv_url' => $profile->cv_url,
+                'location' => $profile->location,
                 'github_url' => $profile->github_url,
                 'linkedin_url' => $profile->linkedin_url,
-                'website_url' => $profile->website_url,
+                'instagram_url' => $profile->instagram_url,
             ],
         ]);
     }
@@ -62,7 +64,7 @@ class PortfolioController extends Controller
                 'id' => $skill->id,
                 'name' => $skill->name,
                 'category' => $skill->category,
-                'icon_class' => $skill->icon_class,
+                'icon_class' => $skill->icon,
             ]),
         ]);
     }
@@ -87,7 +89,7 @@ class PortfolioController extends Controller
                 'description' => $project->description,
                 'thumbnail_url' => $project->thumbnail_url,
                 'demo_url' => $project->demo_url,
-                'repo_url' => $project->repo_url,
+                'repo_url' => $project->github_url,
                 'is_featured' => $project->is_featured,
                 'skills' => $project->skills->map(fn ($skill) => [
                     'id' => $skill->id,
@@ -102,39 +104,40 @@ class PortfolioController extends Controller
      * GET /api/portfolio/projects/{slug}
      */
     public function projectDetail(string $slug): JsonResponse
-{
-    $project = Project::with('skills')
-        ->where('slug', $slug)
-        ->first();
+    {
+        $project = Project::with('skills')
+            ->where('slug', $slug)
+            ->first();
 
-    if (!$project) {
+        if (! $project) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Proyek tidak ditemukan.',
+                'data' => null,
+            ], 404);
+        }
+
         return response()->json([
-            'status' => 'error',
-            'message' => 'Proyek tidak ditemukan.',
-            'data' => null,
-        ], 404);
+            'status' => 'success',
+            'message' => 'Detail proyek berhasil diambil.',
+            'data' => [
+                'id' => $project->id,
+                'title' => $project->title,
+                'slug' => $project->slug,
+                'description' => $project->description,
+                'thumbnail_url' => $project->thumbnail_url,
+                'demo_url' => $project->demo_url,
+                'repo_url' => $project->github_url,
+                'is_featured' => $project->is_featured,
+                'skills' => $project->skills->map(fn ($skill) => [
+                    'id' => $skill->id,
+                    'name' => $skill->name,
+                    'category' => $skill->category,
+                ]),
+            ],
+        ]);
     }
 
-    return response()->json([
-        'status' => 'success',
-        'message' => 'Detail proyek berhasil diambil.',
-        'data' => [
-            'id' => $project->id,
-            'title' => $project->title,
-            'slug' => $project->slug,
-            'description' => $project->description,
-            'thumbnail_url' => $project->thumbnail_url,
-            'demo_url' => $project->demo_url,
-            'repo_url' => $project->repo_url,
-            'is_featured' => $project->is_featured,
-            'skills' => $project->skills->map(fn ($skill) => [
-                'id' => $skill->id,
-                'name' => $skill->name,
-                'category' => $skill->category,
-            ]),
-        ],
-    ]);
-}
     /**
      * GET /api/portfolio/experiences
      */
