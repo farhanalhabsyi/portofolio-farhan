@@ -228,3 +228,182 @@ Hasil pengujian menunjukkan:
 ### Relasi Project dan Skill
 
 ![Relasi Project dan Skill](docs/screenshots/project-skill-relations.png)
+
+# Latihan 5a — RESTful API GET Endpoints
+
+## Deskripsi
+
+Latihan ini mengimplementasikan RESTful API untuk menyediakan data portofolio mahasiswa menggunakan Laravel 11 dan MySQL. API bersifat read-only dan mengembalikan data dalam format JSON terstruktur.
+
+## Endpoint API
+
+Base URL lokal: `http://127.0.0.1:8000`
+
+| Method | Endpoint | Keterangan |
+|---|---|---|
+| GET | `/api/portfolio/profile` | Mengambil data profil |
+| GET | `/api/portfolio/skills` | Mengambil daftar skill |
+| GET | `/api/portfolio/projects` | Mengambil daftar proyek beserta skill |
+| GET | `/api/portfolio/projects/{slug}` | Mengambil detail proyek berdasarkan slug |
+| GET | `/api/portfolio/experiences` | Mengambil data pengalaman |
+| GET | `/api/portfolio/certificates` | Mengambil data sertifikat |
+
+Semua endpoint portofolio menggunakan HTTP GET dan tidak memerlukan autentikasi.
+
+## Format Respons
+
+Respons sukses menggunakan struktur JSON dengan field `status`, `message`, dan `data`. Endpoint daftar juga menyediakan field `total` untuk menunjukkan jumlah data yang dikembalikan.
+
+Contoh respons:
+
+```json
+{
+  "status": "success",
+  "message": "Data skill berhasil diambil.",
+  "total": 6,
+  "data": []
+}
+```
+
+Jika slug proyek tidak ditemukan, API mengembalikan HTTP 404 dengan respons JSON:
+
+```json
+{
+  "status": "error",
+  "message": "Proyek tidak ditemukan.",
+  "data": null
+}
+```
+
+## Eager Loading dan N+1 Query
+
+Endpoint proyek menggunakan Eloquent eager loading melalui `with('skills')` untuk mengambil relasi skill secara efisien.
+
+Tanpa eager loading, aplikasi berpotensi mengalami N+1 Query Problem, yaitu query tambahan dijalankan untuk setiap proyek ketika relasi skill diakses. Dengan eager loading, Laravel mengambil data proyek dan relasi skill secara terpisah dalam jumlah query yang lebih efisien.
+
+## Konfigurasi API Laravel 11
+
+Laravel 11 menggunakan struktur aplikasi yang lebih ringkas. Routing API diaktifkan melalui konfigurasi `bootstrap/app.php` dan didefinisikan pada `routes/api.php`.
+
+Perintah `php artisan install:api` digunakan untuk memasang konfigurasi API dan Laravel Sanctum. Route API secara otomatis memiliki prefix `/api`.
+
+## Pengujian
+
+Endpoint diuji menggunakan browser, pemeriksaan route Laravel, dan automated feature test menggunakan PHPUnit dengan database SQLite in-memory.
+
+Hasil pengujian:
+- Endpoint profile berhasil mengembalikan JSON.
+- Endpoint skills berhasil mengembalikan 6 data.
+- Endpoint projects berhasil mengembalikan 3 proyek beserta relasi skills.
+- Detail proyek `edubridge` berhasil diakses berdasarkan slug.
+- Endpoint experiences berhasil mengembalikan 2 data.
+- Endpoint certificates berhasil mengembalikan 1 data.
+- Slug proyek yang tidak ditemukan mengembalikan HTTP 404 JSON.
+
+Automated test dijalankan menggunakan perintah:
+
+```bash
+php artisan test
+```
+
+## Menjalankan API
+
+1. Pastikan konfigurasi database pada `.env` sudah benar.
+2. Jalankan migration:
+
+   ```bash
+   php artisan migrate
+   ```
+
+3. Jalankan server Laravel:
+
+   ```bash
+   php artisan serve
+   ```
+
+4. Akses endpoint melalui browser atau API client seperti Postman atau Thunder Client.
+
+## Catatan
+
+File `.env` berisi konfigurasi lokal dan tidak boleh di-commit ke repository. Gunakan `.env.example` sebagai template konfigurasi.
+
+
+# Latihan 5b — RESTful API POST Endpoint
+
+## Deskripsi
+
+Latihan ini mengimplementasikan endpoint RESTful API menggunakan method HTTP POST untuk menerima dan menyimpan pesan dari pengunjung portofolio.
+
+Endpoint menggunakan Laravel Form Request untuk melakukan validasi input, membersihkan data sebelum disimpan, serta mengembalikan respons JSON dengan status HTTP yang sesuai.
+
+## Endpoint API
+
+Base URL lokal: `http://127.0.0.1:8000`
+
+| Method | Endpoint | Keterangan |
+|---|---|---|
+| POST | `/api/portfolio/messages` | Menyimpan pesan dari pengunjung |
+
+Endpoint dapat diakses tanpa autentikasi dan memiliki middleware rate limiting `throttle:5,1`, yaitu maksimal 5 request per menit.
+
+## Validasi Request
+
+Validasi dilakukan melalui `StoreMessageRequest`.
+
+| Field | Aturan |
+|---|---|
+| `sender_name` | Wajib, string, 3–100 karakter |
+| `sender_email` | Wajib, format email RFC dan DNS, maksimal 255 karakter |
+| `subject` | Wajib, string, 3–150 karakter |
+| `body` | Wajib, string, 10–2000 karakter |
+
+Pesan validasi menggunakan bahasa Indonesia.
+
+## Contoh Request
+
+```json
+{
+  "sender_name": "Farhan Test",
+  "sender_email": "farhan.test@gmail.com",
+  "subject": "Pengujian API Portofolio",
+  "body": "Ini adalah pesan pengujian endpoint POST portofolio."
+}
+```
+
+## Format Respons
+
+### Validasi gagal — HTTP 422
+
+Jika data tidak memenuhi aturan validasi, API mengembalikan respons JSON dengan status `error` dan detail kesalahan pada field yang tidak valid.
+
+### Berhasil menyimpan pesan — HTTP 201
+
+Jika data valid, API menyimpan pesan ke tabel `messages` dan mengembalikan status `success` beserta data pesan yang tersimpan.
+
+## Keamanan dan Penyimpanan
+
+Data request diambil melalui `$request->validated()` agar hanya field yang lolos validasi digunakan.
+
+Nama pengirim, subjek, dan isi pesan dibersihkan dari tag HTML menggunakan `strip_tags()`. Email dibersihkan menggunakan `FILTER_SANITIZE_EMAIL`.
+
+Data disimpan menggunakan model Eloquent `Message::create()` dengan field yang diizinkan pada `$fillable`.
+
+## Hasil Pengujian
+
+Pengujian endpoint dilakukan menggunakan Postman.
+
+- Request dengan data tidak valid berhasil mengembalikan HTTP 422.
+- Request dengan data valid berhasil mengembalikan HTTP 201.
+- Data pesan berhasil tersimpan dan diverifikasi melalui Laravel Tinker.
+- Middleware rate limiting berhasil terdaftar pada route.
+- Automated test Laravel: 6 tests passed dan 21 assertions passed.
+
+## Screenshot Pengujian
+
+### Validasi gagal — HTTP 422
+
+![Post message validation 422](docs/screenshots/post-message-validation-422.png)
+
+### Berhasil menyimpan pesan — HTTP 201
+
+![Post message success 201](docs/screenshots/post-message-success-201.png)
