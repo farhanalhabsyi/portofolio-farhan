@@ -695,3 +695,121 @@ footer {
     object-fit: contain;
     object-position: center;
 }
+
+/* LATIHAN 6 - Container proyek dari Fetch API */
+#projectsDataContainer:not([hidden]) {
+    display: contents;
+}
+
+/* LATIHAN 6 - CONTACT TOAST */
+.contact-toast {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 9999;
+    max-width: 360px;
+    padding: 16px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    background: #111827;
+    color: #f8fafc;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.contact-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contact-toast.success {
+    border-left: 4px solid #22c55e;
+}
+
+.contact-toast.error {
+    border-left: 4px solid #ef4444;
+}
+
+@media (max-width: 640px) {
+    .contact-toast {
+        right: 16px;
+        bottom: 16px;
+        left: 16px;
+        max-width: none;
+    }
+}
+
+/* LATIHAN 6 - PROJECT SEARCH */
+.project-search {
+    max-width: 420px;
+    margin: 0 0 32px;
+}
+
+#projectSearch {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    color: #f8fafc;
+    font: inherit;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#projectSearch::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#projectSearch:focus {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+
+/* =====================================
+   LATIHAN 6 - LOADING SKELETON
+===================================== */
+
+.skeleton-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.skill-card.skeleton {
+    min-width: 100px;
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(168, 85, 247, 0.15);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.skeleton-line {
+    display: block;
+    width: 60px;
+    height: 10px;
+    border-radius: 999px;
+    background: linear-gradient(
+        90deg,
+        rgba(168, 85, 247, 0.08),
+        rgba(168, 85, 247, 0.3),
+        rgba(168, 85, 247, 0.08)
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}

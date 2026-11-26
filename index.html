@@ -72,7 +72,7 @@
     <a href="#projects" class="btn-primary">Explore My Work ↗</a>
     <a href="#contact" class="btn-secondary">Contact Me</a>
     <a
-        href="cv-farhan.pdf"
+        href="assets/cv-farhan.pdf"
         download="CV_M_Farhan_Alhabsyi.pdf"
         class="btn-secondary"
     >
@@ -209,17 +209,15 @@
             dan gunakan dalam pengembangan proyek.
         </p>
 
-        <!-- FRONTEND -->
-        <div class="skill-group">
-            <h3 class="skill-category-title">Frontend Development</h3>
-            <div class="skills-container">
-                <div class="skill-card">HTML</div>
-                <div class="skill-card">CSS</div>
-                <div class="skill-card">JavaScript</div>
-                <div class="skill-card">Tailwind CSS</div>
-                <div class="skill-card">React JS</div>
-            </div>
+        <!-- SKILLS DATA FROM API -->
+<div id="skillsDataContainer" class="space-y-8">
+    <div class="skill-group">
+        <h3 class="skill-category-title">Skills</h3>
+        <div class="skills-container">
+            <div class="skill-card animate-pulse">Memuat skills...</div>
         </div>
+    </div>
+</div>
 
         <!-- BACKEND -->
         <div class="skill-group">
@@ -252,10 +250,22 @@
             Featured <span>Projects.</span>
         </h2>
 
+        <!-- LATIHAN 6 - Pencarian proyek -->
+        <div class="project-search">
+            <input
+                type="search"
+                id="projectSearch"
+                placeholder="Search projects..."
+                aria-label="Search projects"
+                autocomplete="off"
+            >
+        </div>
+
         <div class="projects-container">
+            <div id="projectsDataContainer"></div>
 
 
-<div class="project-card">
+<div class="project-card" id="project-edubridge">
     <div class="project-image figma-embed">
         <iframe
             src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FpHmN6exU1tVS0RaMJu8Kh3%2FWebsite%3Fnode-id%3D1-2%26p%3Df%26t%3D8SRUhRdRkFKxDVu9-0%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1%26starting-point-node-id%3D1%253A2"
@@ -293,7 +303,7 @@
 </div>
 
 
-            <div class="project-card">
+            <div class="project-card" id="project-smartstock">
                 <div class="project-image smartstock">
                     <img
                         src="assets/wrtati.png"
@@ -410,6 +420,33 @@
                     dan dasar pengembangan program.
                 </p>
             </div>
+                </div>
+
+        <!-- LATIHAN 6 - CERTIFICATES API -->
+        <div id="certificatesDataContainer" class="mt-8">
+            <p class="section-description">
+                Memuat sertifikat dari API...
+            </p>
+        </div>
+       </section>
+
+    <!-- LATIHAN 6 - GITHUB API WIDGET -->
+    <section id="github" class="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+        <div class="mx-auto max-w-3xl">
+            <p class="section-label text-center">GITHUB PROFILE</p>
+
+            <h2 class="section-title text-center">
+                Coding <span>Activity.</span>
+            </h2>
+
+            <div
+                id="githubDataContainer"
+                class="mt-8 rounded-2xl border border-purple-500/20 bg-white/5 p-7"
+            >
+                <p class="section-description">
+                    Memuat profil GitHub...
+                </p>
+            </div>
         </div>
     </section>
 
@@ -484,6 +521,14 @@
                     class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none transition focus:border-purple-500"
                 ></textarea>
             </div>
+
+            <div
+    id="contactFormStatus"
+    class="text-sm"
+    role="status"
+    aria-live="polite"
+    hidden>
+</div>
 
             <button type="submit" class="btn-primary w-full">
                 Send Message ↗

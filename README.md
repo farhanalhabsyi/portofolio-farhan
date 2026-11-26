@@ -1,68 +1,80 @@
-# Portfolio Website — M Farhan Alhabsyi
 
-Website portofolio pribadi untuk Praktikum Pemrograman Web 2 — Latihan 3.
+# Website Portofolio — Latihan 6
+
+Website portofolio mahasiswa yang dikembangkan menggunakan HTML, Tailwind CSS, dan JavaScript. Website diintegrasikan dengan API menggunakan Fetch API untuk menampilkan data secara dinamis.
 
 ## Identitas Mahasiswa
 
-- **Nama:** M Farhan Alhabsyi
-- **NPM:** 22312084
-- **Program Studi:** Informatika
-- **Universitas:** Universitas Teknokrat Indonesia
+- Nama: M Farhan Alhabsyi
+- NPM: 22312084
+- Kelas: IF 23C
+- Program Studi: Informatika
+- Universitas: Universitas Teknokrat Indonesia
 
 ## Teknologi
 
-- HTML5
+- HTML
 - Tailwind CSS
-- JavaScript
-- Vite
+- JavaScript (Vanilla JavaScript)
+- Fetch API
+- Laravel REST API
+- Git dan GitHub
 
 ## Fitur
 
-- Responsive design
-- About Me
-- Skills & Technologies
-- Featured Projects
-- Contact Section
-- Responsive navigation menu
+- Menampilkan data skills, projects, dan certificates dari API.
+- Loading skeleton saat data sedang dimuat.
+- Menangani kondisi data kosong dan error.
+- Pencarian project dengan debounce.
+- Form contact menggunakan POST tanpa reload halaman.
+- Validasi form dan penanganan HTTP 422.
+- Penanganan rate limit HTTP 429.
+- Indikator loading dan notifikasi toast.
+- Widget profil GitHub menggunakan GitHub API.
+- Fallback avatar apabila foto profil gagal dimuat.
+- Desain responsif untuk desktop, tablet, dan mobile.
+- Tombol unduh CV.
 
-## Screenshot
+## Struktur Folder
 
-### Desktop View
-
-![Portfolio Desktop](screenshots/desktop.png)
-
-### Mobile View
-
-![Portfolio Mobile](screenshots/mobile.png)
+```text
+portofolio-farhan/
+├── index.html
+├── README.md
+├── assets/
+│   ├── script.js
+│   ├── style.css
+│   ├── profile.jpg
+│   └── cv-farhan.pdf
+└── portofolio-web/
+    └── Laravel API
+```
 
 ## Menjalankan Project
 
-Install dependencies:
+1. Buka folder `portofolio-web` dan jalankan backend Laravel:
 
-```bash
-npm install
-```
+   ```bash
+   php artisan serve --port=8000
+   ```
 
-Jalankan development server:
+2. Pastikan API dapat diakses melalui:
 
-```bash
-npm run dev
-```
+   `http://127.0.0.1:8000/api/portfolio`
 
-Build production:
+3. Buka `index.html` menggunakan Live Server atau server frontend lokal.
 
-```bash
-npm run build
-```
+4. Pastikan backend Laravel tetap berjalan ketika website mengambil data dari API.
 
-Preview production:
+## GitHub API
 
-```bash
-npm run preview
-```
+Website mengambil informasi profil GitHub melalui endpoint:
 
----
+`https://api.github.com/users/farhanalhabsyi`
 
+## Pengembang
+
+M Farhan Alhabsyi — 2026
 ## Project Praktikum Laravel
 
 Repository ini juga berisi pengembangan website portofolio menggunakan Laravel untuk Praktikum Pemrograman Web 2.
