@@ -75,3 +75,24 @@ Website mengambil informasi profil GitHub melalui endpoint:
 ## Pengembang
 
 M Farhan Alhabsyi — 2026
+## Project Praktikum Laravel
+
+Repository ini juga berisi pengembangan website portofolio menggunakan Laravel untuk Praktikum Pemrograman Web 2.
+
+Pengembangan project mencakup:
+
+- Pengembangan fitur website portofolio
+- REST API GET
+- REST API POST
+- Validasi request dan penyimpanan pesan kontak
+- Dokumentasi dan pengujian API
+
+Project Laravel berada di folder `portofolio-web`.
+
+Dokumentasi lengkap mengenai instalasi, fitur, endpoint API, dan pengujian dapat dibaca di:
+
+[Dokumentasi Project Laravel](./portofolio-web/README.md)
+
+---
+
+Dibuat oleh M Farhan Alhabsyi — 2026
