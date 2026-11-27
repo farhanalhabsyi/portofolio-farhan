@@ -182,7 +182,7 @@ if (contactForm && contactFormStatus) {
 // 5. FETCH API - SKILLS
 // =====================================
 
-const API_BASE_URL = "http://127.0.0.1:8000/api/portfolio";
+const API_BASE_URL = "/api/portfolio";
 
 const skillsDataContainer = document.getElementById("skillsDataContainer");
 
@@ -317,9 +317,10 @@ async function fetchProjects() {
         const projects = result.data || [];
 
         const projectCardTargets = {
-            edubridge: "project-edubridge",
-            smartstock: "project-smartstock"
-        };
+    edubridge: "project-edubridge",
+    smartstock: "project-smartstock",
+    "civora-community-reporting-app": "project-civora"
+};
 
         const additionalProjects = [];
 

@@ -2,29 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
-
 class HomeController extends Controller
 {
     public function index()
     {
-        $laravelVersion = app()->version();
+        $portfolioPath = public_path('portfolio/index.html');
 
-        try {
-            $connection = DB::connection();
-            $connection->getPdo();
+        abort_unless(
+            file_exists($portfolioPath),
+            404,
+            'Halaman portofolio belum tersedia.'
+        );
 
-            $databaseName = $connection->getDatabaseName();
-            $databaseStatus = 'Terhubung';
-        } catch (\Throwable $e) {
-            $databaseName = config('database.connections.mysql.database');
-            $databaseStatus = 'Tidak terhubung';
-        }
-
-        return view('welcome', [
-            'databaseName' => $databaseName,
-            'databaseStatus' => $databaseStatus,
-            'laravelVersion' => $laravelVersion,
-        ]);
+        return response()->file($portfolioPath);
     }
 }
