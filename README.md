@@ -1,98 +1,209 @@
+# Portfolio Website — M Farhan Alhabsyi
 
-# Website Portofolio — Latihan 6
+Website portofolio mahasiswa yang dikembangkan sebagai project Praktikum Pemrograman Web 2 di Universitas Teknokrat Indonesia.
 
-Website portofolio mahasiswa yang dikembangkan menggunakan HTML, Tailwind CSS, dan JavaScript. Website diintegrasikan dengan API menggunakan Fetch API untuk menampilkan data secara dinamis.
+Repository ini mencakup pengembangan website portofolio menggunakan HTML, Tailwind CSS, dan JavaScript, serta backend Laravel yang menyediakan REST API, fitur pengelolaan project melalui dashboard admin, dan deployment website.
+
+## Website
+
+| Keterangan | Link |
+|---|---|
+| Website Publik | https://portofolio-farhan-production.up.railway.app/ |
+| GitHub Pages | https://farhanalhabsyi.github.io/portofolio-farhan/ |
+| Admin Login | https://portofolio-farhan-production.up.railway.app/admin/login |
+| Admin Dashboard | https://portofolio-farhan-production.up.railway.app/admin/dashboard |
+
+> Dashboard admin memerlukan autentikasi. Jangan menyimpan password admin atau kredensial production di repository publik.
 
 ## Identitas Mahasiswa
 
-- Nama: M Farhan Alhabsyi
-- NPM: 22312084
-- Kelas: IF 23C
-- Program Studi: Informatika
-- Universitas: Universitas Teknokrat Indonesia
+- **Nama:** M Farhan Alhabsyi
+- **NPM:** 22312084
+- **Kelas:** IF 23C
+- **Program Studi:** Informatika
+- **Universitas:** Universitas Teknokrat Indonesia
 
 ## Teknologi
 
-- HTML
+### Frontend
+- HTML5
 - Tailwind CSS
 - JavaScript (Vanilla JavaScript)
 - Fetch API
+- Vite
+
+### Backend
+- PHP
+- Laravel
 - Laravel REST API
-- Git dan GitHub
+- MySQL
+- Laravel Sanctum
 
-## Fitur
+### Tools
+- Git
+- GitHub
+- Railway
+- Postman
 
-- Menampilkan data skills, projects, dan certificates dari API.
+## Fitur Website
+
+- Menampilkan informasi profil mahasiswa.
+- Menampilkan skills, projects, experiences, dan certificates.
+- Mengambil data portfolio melalui REST API.
 - Loading skeleton saat data sedang dimuat.
 - Menangani kondisi data kosong dan error.
 - Pencarian project dengan debounce.
-- Form contact menggunakan POST tanpa reload halaman.
+- Form contact menggunakan HTTP POST.
 - Validasi form dan penanganan HTTP 422.
 - Penanganan rate limit HTTP 429.
 - Indikator loading dan notifikasi toast.
 - Widget profil GitHub menggunakan GitHub API.
 - Fallback avatar apabila foto profil gagal dimuat.
 - Desain responsif untuk desktop, tablet, dan mobile.
-- Tombol unduh CV.
+- Tombol download CV.
 
-## Struktur Folder
+## Fitur Admin
+
+- Login admin menggunakan autentikasi.
+- Dashboard pengelolaan portfolio.
+- Menambahkan project baru.
+- Mengelola data project yang tersimpan di database.
+- Integrasi dashboard dengan database dan REST API.
+
+Project yang ditambahkan melalui dashboard admin dapat disimpan ke database production dan ditampilkan melalui API website.
+
+## REST API
+
+Base URL:
+
+```text
+https://portofolio-farhan-production.up.railway.app/api/portfolio
+```
+
+| Method | Endpoint | Keterangan |
+|---|---|---|
+| GET | `/profile` | Mengambil data profil |
+| GET | `/skills` | Mengambil data skills |
+| GET | `/projects` | Mengambil daftar project |
+| GET | `/projects/{slug}` | Mengambil detail project |
+| GET | `/experiences` | Mengambil data pengalaman |
+| GET | `/certificates` | Mengambil data sertifikat |
+| POST | `/messages` | Mengirim pesan contact |
+
+## Struktur Repository
 
 ```text
 portofolio-farhan/
 ├── index.html
-├── README.md
 ├── assets/
 │   ├── script.js
 │   ├── style.css
 │   ├── profile.jpg
 │   └── cv-farhan.pdf
-└── portofolio-web/
-    └── Laravel API
+├── docs/
+├── portofolio-web/
+│   ├── app/
+│   ├── routes/
+│   ├── database/
+│   ├── public/
+│   ├── resources/
+│   └── README.md
+├── vite.config.mjs
+├── vite.railway.config.mjs
+└── README.md
 ```
 
-## Menjalankan Project
+## Menjalankan Project Secara Lokal
 
-1. Buka folder `portofolio-web` dan jalankan backend Laravel:
+### 1. Clone repository
 
-   ```bash
-   php artisan serve --port=8000
-   ```
+```bash
+git clone https://github.com/farhanalhabsyi/portofolio-farhan.git
+cd portofolio-farhan
+```
 
-2. Pastikan API dapat diakses melalui:
+### 2. Menjalankan backend Laravel
 
-   `http://127.0.0.1:8000/api/portfolio`
+Masuk ke folder Laravel:
 
-3. Buka `index.html` menggunakan Live Server atau server frontend lokal.
+```bash
+cd portofolio-web
+```
 
-4. Pastikan backend Laravel tetap berjalan ketika website mengambil data dari API.
+Install dependency:
 
-## GitHub API
+```bash
+composer install
+```
 
-Website mengambil informasi profil GitHub melalui endpoint:
+Salin file environment:
 
-`https://api.github.com/users/farhanalhabsyi`
+```bash
+copy .env.example .env
+```
 
-## Pengembang
+Generate application key:
 
-M Farhan Alhabsyi — 2026
-## Project Praktikum Laravel
+```bash
+php artisan key:generate
+```
 
-Repository ini juga berisi pengembangan website portofolio menggunakan Laravel untuk Praktikum Pemrograman Web 2.
+Atur konfigurasi database pada file `.env`, kemudian jalankan migration dan seeder jika diperlukan:
 
-Pengembangan project mencakup:
+```bash
+php artisan migrate --seed
+```
 
-- Pengembangan fitur website portofolio
-- REST API GET
-- REST API POST
-- Validasi request dan penyimpanan pesan kontak
-- Dokumentasi dan pengujian API
+Jalankan server Laravel:
 
-Project Laravel berada di folder `portofolio-web`.
+```bash
+php artisan serve --port=8000
+```
 
-Dokumentasi lengkap mengenai instalasi, fitur, endpoint API, dan pengujian dapat dibaca di:
+API lokal dapat diakses melalui:
+
+```text
+http://127.0.0.1:8000/api/portfolio
+```
+
+### 3. Menjalankan frontend
+
+Kembali ke root repository dan install dependency frontend:
+
+```bash
+cd ..
+npm install
+```
+
+Jalankan development server:
+
+```bash
+npm run dev
+```
+
+Pastikan backend Laravel tetap berjalan ketika frontend mengambil data dari API.
+
+## Deployment
+
+Website portofolio dipublikasikan menggunakan Railway.
+
+- **Platform:** Railway
+- **Branch:** `Lat-8_Deployment`
+- **Laravel Root Directory:** `/portofolio-web`
+- **Production URL:** https://portofolio-farhan-production.up.railway.app/
+
+Konfigurasi production menggunakan environment variables Railway. File `.env` tidak disimpan ke repository.
+
+## Dokumentasi Laravel
+
+Dokumentasi instalasi, database, REST API, pengujian, dan pengembangan backend tersedia di:
 
 [Dokumentasi Project Laravel](./portofolio-web/README.md)
 
----
+## Pengembang
 
-Dibuat oleh M Farhan Alhabsyi — 2026
+**M Farhan Alhabsyi**
+
+Informatika — Universitas Teknokrat Indonesia
+
+2026
