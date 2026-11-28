@@ -1,15 +1,32 @@
+# Latihan 8 — Deployment Website Portofolio
 
-# Website Portofolio — Latihan 6
+Website portofolio mahasiswa yang dikembangkan menggunakan HTML, Tailwind CSS, JavaScript, dan Laravel REST API. Pada Latihan 8, website diintegrasikan dengan backend Laravel dan dipublikasikan melalui Railway dengan koneksi HTTPS.
 
-Website portofolio mahasiswa yang dikembangkan menggunakan HTML, Tailwind CSS, dan JavaScript. Website diintegrasikan dengan API menggunakan Fetch API untuk menampilkan data secara dinamis.
+## Deployment
+
+**Website Portofolio:**
+https://portofolio-farhan-production.up.railway.app/
+
+**Admin Login:**
+https://portofolio-farhan-production.up.railway.app/admin/login
+
+**Admin Dashboard:**
+https://portofolio-farhan-production.up.railway.app/admin/dashboard
+
+**API Portfolio:**
+https://portofolio-farhan-production.up.railway.app/api/portfolio
+
+Hosting menggunakan Railway dengan HTTPS.
 
 ## Identitas Mahasiswa
 
-- Nama: M Farhan Alhabsyi
-- NPM: 22312084
-- Kelas: IF 23C
-- Program Studi: Informatika
-- Universitas: Universitas Teknokrat Indonesia
+| Keterangan | Data |
+|---|---|
+| Nama | M Farhan Alhabsyi |
+| NPM | 22312084 |
+| Kelas | IF 24Cx |
+| Program Studi | Informatika |
+| Universitas | Universitas Teknokrat Indonesia |
 
 ## Teknologi
 
@@ -17,16 +34,21 @@ Website portofolio mahasiswa yang dikembangkan menggunakan HTML, Tailwind CSS, d
 - Tailwind CSS
 - JavaScript (Vanilla JavaScript)
 - Fetch API
+- Laravel
 - Laravel REST API
+- Laravel Sanctum
+- MySQL
 - Git dan GitHub
+- Railway
 
-## Fitur
+## Fitur Website
 
-- Menampilkan data skills, projects, dan certificates dari API.
-- Loading skeleton saat data sedang dimuat.
+- Menampilkan data profil, skills, projects, experiences, dan certificates dari Laravel REST API.
+- Menampilkan daftar proyek beserta skills terkait.
+- Loading skeleton ketika data sedang dimuat.
 - Menangani kondisi data kosong dan error.
 - Pencarian project dengan debounce.
-- Form contact menggunakan POST tanpa reload halaman.
+- Form contact menggunakan API POST tanpa reload halaman.
 - Validasi form dan penanganan HTTP 422.
 - Penanganan rate limit HTTP 429.
 - Indikator loading dan notifikasi toast.
@@ -34,65 +56,110 @@ Website portofolio mahasiswa yang dikembangkan menggunakan HTML, Tailwind CSS, d
 - Fallback avatar apabila foto profil gagal dimuat.
 - Desain responsif untuk desktop, tablet, dan mobile.
 - Tombol unduh CV.
+- Admin login menggunakan Laravel Sanctum.
+- Admin dashboard untuk mengelola data proyek.
+- Fitur CRUD proyek melalui REST API.
 
-## Struktur Folder
+## Deployment dengan Railway
 
-```text
-portofolio-farhan/
-├── index.html
-├── README.md
-├── assets/
-│   ├── script.js
-│   ├── style.css
-│   ├── profile.jpg
-│   └── cv-farhan.pdf
-└── portofolio-web/
-    └── Laravel API
+Project Laravel berada di folder `portofolio-web` dan digunakan sebagai backend sekaligus server website portofolio.
+
+Pada deployment, frontend hasil build ditempatkan di direktori publik Laravel agar website dan API dapat diakses melalui domain yang sama.
+
+Konfigurasi deployment mencakup:
+
+- Konfigurasi build frontend untuk Railway.
+- Integrasi hasil build frontend ke direktori publik Laravel.
+- Penggunaan HTTPS untuk website dan admin dashboard.
+- Penyesuaian path asset dan file CV agar dapat diakses pada deployment.
+- Penggunaan environment variables untuk konfigurasi aplikasi dan database.
+
+## Menjalankan Project secara Lokal
+
+### 1. Menjalankan Laravel
+
+Buka terminal dan masuk ke folder Laravel:
+
+```bash
+cd portofolio-web
 ```
 
-## Menjalankan Project
+Install dependency PHP:
 
-1. Buka folder `portofolio-web` dan jalankan backend Laravel:
+```bash
+composer install
+```
 
-   ```bash
-   php artisan serve --port=8000
-   ```
+Siapkan file environment:
 
-2. Pastikan API dapat diakses melalui:
+```bash
+copy .env.example .env
+```
 
-   `http://127.0.0.1:8000/api/portfolio`
+Sesuaikan konfigurasi database pada file `.env`, kemudian jalankan:
 
-3. Buka `index.html` menggunakan Live Server atau server frontend lokal.
+```bash
+php artisan key:generate
+php artisan migrate --seed
+php artisan serve --port=8000
+```
 
-4. Pastikan backend Laravel tetap berjalan ketika website mengambil data dari API.
+### 2. Mengakses Website
 
-## GitHub API
+Setelah server Laravel berjalan, buka:
 
-Website mengambil informasi profil GitHub melalui endpoint:
+```text
+http://127.0.0.1:8000
+```
 
-`https://api.github.com/users/farhanalhabsyi`
+Admin login dapat diakses melalui:
 
-## Pengembang
+```text
+http://127.0.0.1:8000/admin/login
+```
 
-M Farhan Alhabsyi — 2026
-## Project Praktikum Laravel
+API portfolio tersedia pada:
 
-Repository ini juga berisi pengembangan website portofolio menggunakan Laravel untuk Praktikum Pemrograman Web 2.
+```text
+http://127.0.0.1:8000/api/portfolio
+```
 
-Pengembangan project mencakup:
+Pastikan database sudah tersedia dan backend Laravel tetap berjalan ketika website mengambil data dari API.
 
-- Pengembangan fitur website portofolio
-- REST API GET
-- REST API POST
-- Validasi request dan penyimpanan pesan kontak
-- Dokumentasi dan pengujian API
+## Admin Panel
 
-Project Laravel berada di folder `portofolio-web`.
+Admin panel digunakan untuk mengelola data proyek portofolio melalui autentikasi Laravel Sanctum.
 
-Dokumentasi lengkap mengenai instalasi, fitur, endpoint API, dan pengujian dapat dibaca di:
+Fitur admin meliputi:
+
+- Login dan logout admin.
+- Menampilkan daftar proyek.
+- Menambahkan proyek baru.
+- Mengubah data proyek.
+- Menghapus proyek.
+- Mengatur skills dan status featured proyek.
+
+Akun admin demo yang dibuat melalui seeder untuk pengujian lokal:
+
+| Keterangan | Data |
+|---|---|
+| Email | admin@demo.com |
+| Password | password123 |
+
+Gunakan akun demo hanya untuk pengujian lokal. Jangan menggunakan password demo sebagai kredensial admin produksi.
+
+## Dokumentasi Laravel
+
+Project Laravel mencakup pengembangan website portofolio, REST API GET dan POST, validasi request, penyimpanan pesan kontak, autentikasi admin, serta pengujian API.
+
+Dokumentasi lengkap mengenai instalasi, konfigurasi, fitur, endpoint API, dan pengujian dapat dibaca pada:
 
 [Dokumentasi Project Laravel](./portofolio-web/README.md)
 
----
+## Pengembang
 
-Dibuat oleh M Farhan Alhabsyi — 2026
+M Farhan Alhabsyi
+
+Informatika — Universitas Teknokrat Indonesia
+
+2026
