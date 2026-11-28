@@ -13,13 +13,13 @@ Repository ini mencakup pengembangan website portofolio menggunakan HTML, Tailwi
 | Admin Login | https://portofolio-farhan-production.up.railway.app/admin/login |
 | Admin Dashboard | https://portofolio-farhan-production.up.railway.app/admin/dashboard |
 
-> Dashboard admin memerlukan autentikasi. Jangan menyimpan password admin atau kredensial production di repository publik.
+> Dashboard admin memerlukan autentikasi.
 
 ## Identitas Mahasiswa
 
 - **Nama:** M Farhan Alhabsyi
 - **NPM:** 22312084
-- **Kelas:** IF 23C
+- **Kelas:** IF 24Cx
 - **Program Studi:** Informatika
 - **Universitas:** Universitas Teknokrat Indonesia
 
