@@ -1,77 +1,114 @@
+# Latihan 6 — Integrasi Fetch API dengan REST API
 
-# Website Portofolio — Latihan 6
-
-Website portofolio mahasiswa yang dikembangkan menggunakan HTML, Tailwind CSS, dan JavaScript. Website diintegrasikan dengan API menggunakan Fetch API untuk menampilkan data secara dinamis.
+Website portofolio mahasiswa yang dikembangkan menggunakan HTML, Tailwind CSS, dan JavaScript. Pada latihan ini, website diintegrasikan dengan Laravel REST API menggunakan Fetch API untuk mengambil dan menampilkan data portofolio secara dinamis.
 
 ## Identitas Mahasiswa
 
-- Nama: M Farhan Alhabsyi
-- NPM: 22312084
-- Kelas: IF 23C
-- Program Studi: Informatika
-- Universitas: Universitas Teknokrat Indonesia
+| Keterangan | Data |
+|---|---|
+| Nama | M Farhan Alhabsyi |
+| NPM | 22312084 |
+| Kelas | IF 24Cx |
+| Program Studi | Informatika |
+| Universitas | Universitas Teknokrat Indonesia |
 
 ## Teknologi
 
 - HTML
 - Tailwind CSS
-- JavaScript (Vanilla JavaScript)
+- JavaScript
+- Vite
 - Fetch API
 - Laravel REST API
-- Git dan GitHub
 
 ## Fitur
 
-- Menampilkan data skills, projects, dan certificates dari API.
-- Loading skeleton saat data sedang dimuat.
-- Menangani kondisi data kosong dan error.
-- Pencarian project dengan debounce.
-- Form contact menggunakan POST tanpa reload halaman.
-- Validasi form dan penanganan HTTP 422.
-- Penanganan rate limit HTTP 429.
-- Indikator loading dan notifikasi toast.
-- Widget profil GitHub menggunakan GitHub API.
-- Fallback avatar apabila foto profil gagal dimuat.
-- Desain responsif untuk desktop, tablet, dan mobile.
-- Tombol unduh CV.
+- Menampilkan data profil dari API
+- Menampilkan daftar keahlian
+- Menampilkan proyek portofolio beserta keahliannya
+- Menampilkan pengalaman
+- Menampilkan sertifikat
+- Mengambil data menggunakan Fetch API
+- Menampilkan data secara dinamis dari backend Laravel
 
-## Struktur Folder
+## Integrasi REST API
+
+Website mengambil data dari Laravel REST API melalui endpoint GET berikut:
+
+| Endpoint | Data |
+|---|---|
+| `/api/portfolio/profile` | Profil mahasiswa |
+| `/api/portfolio/skills` | Daftar keahlian |
+| `/api/portfolio/projects` | Daftar proyek |
+| `/api/portfolio/experiences` | Pengalaman |
+| `/api/portfolio/certificates` | Sertifikat |
+
+Data yang diterima dari API digunakan untuk memperbarui konten pada halaman portofolio.
+
+## Struktur Project
 
 ```text
 portofolio-farhan/
-├── index.html
-├── README.md
 ├── assets/
 │   ├── script.js
-│   ├── style.css
-│   ├── profile.jpg
-│   └── cv-farhan.pdf
+│   └── style.css
+├── index.html
+├── package.json
+├── vite.config.mjs
 └── portofolio-web/
-    └── Laravel API
+    └── Laravel REST API
 ```
 
-## Menjalankan Project
+## Menjalankan Website
 
-1. Buka folder `portofolio-web` dan jalankan backend Laravel:
+Pastikan Node.js dan npm sudah terpasang.
 
-   ```bash
-   php artisan serve --port=8000
-   ```
+Masuk ke folder utama repository:
 
-2. Pastikan API dapat diakses melalui:
+```bash
+npm install
+```
 
-   `http://127.0.0.1:8000/api/portfolio`
+Jalankan development server:
 
-3. Buka `index.html` menggunakan Live Server atau server frontend lokal.
+```bash
+npm run dev
+```
 
-4. Pastikan backend Laravel tetap berjalan ketika website mengambil data dari API.
+Buka alamat lokal yang ditampilkan oleh Vite pada terminal.
 
-## GitHub API
+## Menjalankan Backend Laravel
 
-Website mengambil informasi profil GitHub melalui endpoint:
+Buka terminal baru dan masuk ke folder Laravel:
 
-`https://api.github.com/users/farhanalhabsyi`
+```bash
+cd portofolio-web
+```
 
-## Pengembang
+Install dependency:
 
-M Farhan Alhabsyi — 2026
+```bash
+composer install
+```
+
+Siapkan file environment jika belum tersedia:
+
+```bash
+copy .env.example .env
+```
+
+Atur konfigurasi database pada file `.env`, lalu jalankan:
+
+```bash
+php artisan key:generate
+php artisan migrate --seed
+php artisan serve
+```
+
+Pastikan Laravel REST API berjalan agar website dapat mengambil data portofolio.
+
+## Repository
+
+Repository GitHub:
+
+https://github.com/farhanalhabsyi/portofolio-farhan
